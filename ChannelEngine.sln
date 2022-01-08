@@ -7,21 +7,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChannelEngineWeb", "Channel
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChannelEngineConsole", "ChannelEngineConsole", "{64AE54FA-A1E5-43BF-B164-C45821AB2A01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChannelEngine.Console", "ChannelEngineConsole\ChannelEngine.Console\ChannelEngine.Console.csproj", "{002AA61B-27F3-4F9A-8958-A8EB5ECD4733}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChannelEngine.Console", "ChannelEngineConsole\ChannelEngine.Console\ChannelEngine.Console.csproj", "{002AA61B-27F3-4F9A-8958-A8EB5ECD4733}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChannelEngine.Web", "ChannelEngineWeb\ChannelEngine.Web\ChannelEngine.Web.csproj", "{1A46BE70-0D0E-419D-873F-B457F03F3B2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChannelEngine.Web", "ChannelEngineWeb\ChannelEngine.Web\ChannelEngine.Web.csproj", "{1A46BE70-0D0E-419D-873F-B457F03F3B2E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChannelEngineTests", "ChannelEngineTests", "{9A8A3D91-DF66-4699-8D16-8D5D9D458B1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChannelEngine.Tests", "ChannelEngineTests\ChannelEngine.Tests\ChannelEngine.Tests.csproj", "{A3734531-86AD-4EE3-80CE-0AB2E3055B15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChannelEngine.Tests", "ChannelEngineTests\ChannelEngine.Tests\ChannelEngine.Tests.csproj", "{A3734531-86AD-4EE3-80CE-0AB2E3055B15}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChannelEngineCommon", "ChannelEngineCommon", "{12FC22B2-BAF1-4211-86E9-5064AD367292}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChannelEngine.Common", "ChannelEngineCommon\ChannelEngine.Common\ChannelEngine.Common.csproj", "{8C7F443D-4589-4347-938A-4560E935603F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChannelEngine.Common", "ChannelEngineCommon\ChannelEngine.Common\ChannelEngine.Common.csproj", "{8C7F443D-4589-4347-938A-4560E935603F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChannelEngineService", "ChannelEngineService", "{E95E8574-8B44-46AD-9408-C284F0985799}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChannelEngine.Services", "ChannelEngineServices\ChannelEngine.Services\ChannelEngine.Services.csproj", "{D952368F-3141-42FF-B040-FA067AD84FB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChannelEngine.Services", "ChannelEngineServices\ChannelEngine.Services\ChannelEngine.Services.csproj", "{D952368F-3141-42FF-B040-FA067AD84FB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChannelEngineModel", "ChannelEngineModel", "{C69D3840-F68F-4720-A807-0152314370B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChannelEngine.Models", "ChannelEngineModels\ChannelEngine.Models\ChannelEngine.Models.csproj", "{E831022F-6309-448A-A9CD-7031B508D793}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{D952368F-3141-42FF-B040-FA067AD84FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D952368F-3141-42FF-B040-FA067AD84FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D952368F-3141-42FF-B040-FA067AD84FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E831022F-6309-448A-A9CD-7031B508D793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E831022F-6309-448A-A9CD-7031B508D793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E831022F-6309-448A-A9CD-7031B508D793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E831022F-6309-448A-A9CD-7031B508D793}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +67,7 @@ Global
 		{A3734531-86AD-4EE3-80CE-0AB2E3055B15} = {9A8A3D91-DF66-4699-8D16-8D5D9D458B1E}
 		{8C7F443D-4589-4347-938A-4560E935603F} = {12FC22B2-BAF1-4211-86E9-5064AD367292}
 		{D952368F-3141-42FF-B040-FA067AD84FB4} = {E95E8574-8B44-46AD-9408-C284F0985799}
+		{E831022F-6309-448A-A9CD-7031B508D793} = {C69D3840-F68F-4720-A807-0152314370B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D54294EB-2F39-4397-9364-25BB6F254214}
