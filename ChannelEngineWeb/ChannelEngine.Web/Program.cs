@@ -1,7 +1,16 @@
+using ChannelEngine.Common;
+using ChannelEngine.Common.Interfaces;
+using ChannelEngine.Services;
+using ChannelEngine.Services.Intefaces;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Add a service to DI
+builder.Services.AddScoped<IRestApiCore<string>, RestApiCore<string>>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();
 
@@ -12,7 +21,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

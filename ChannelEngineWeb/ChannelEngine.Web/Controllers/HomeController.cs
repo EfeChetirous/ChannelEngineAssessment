@@ -1,4 +1,5 @@
-﻿using ChannelEngine.Web.Models;
+﻿using ChannelEngine.Services.Intefaces;
+using ChannelEngine.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,14 +8,16 @@ namespace ChannelEngine.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IOrderService _orderService;
+        public HomeController(ILogger<HomeController> logger, IOrderService orderService)
         {
             _logger = logger;
+            _orderService = orderService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var orders = await _orderService.GetAllOrders();
             return View();
         }
 

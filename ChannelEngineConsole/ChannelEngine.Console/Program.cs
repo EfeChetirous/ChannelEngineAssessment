@@ -1,2 +1,17 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using ChannelEngine.Common;
+using System.Threading.Tasks;
+
+
+namespace ChannelEngine.Console
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //RestApiCore asd = new RestApiCore(null);
+
+            //var app = asd.ExecuteApi();
+            //app.Execute().GetAwaiter().GetResult();
+        }
+    }
+}
