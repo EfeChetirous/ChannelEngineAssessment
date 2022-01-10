@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IRestApiCore<object>, RestApiCore<object>>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 

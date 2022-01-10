@@ -1,0 +1,38 @@
+﻿@using ChannelEngine.Models.Models
+@model ChannelEngine.Models.Models.ApiResultModel<OrderCollectionsModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Order InProgress</h1>
+
+@if (Model != null && Model.Success)
+{
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Channel Name</th>
+                        <th>Channel Order No</th>
+                        <th>Customer No</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.ResponseData.Content)
+                    {
+                        <tr>
+                            <td>@order.ChannelName</td>
+                            <td>@order.ChannelOrderNo</td>
+                            <td>@order.ChannelCustomerNo</td>
+                            <td>@order.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

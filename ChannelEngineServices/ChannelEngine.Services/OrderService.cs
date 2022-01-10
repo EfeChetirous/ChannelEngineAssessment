@@ -32,12 +32,13 @@ namespace ChannelEngine.Services
             return data;
         }
 
-        public async Task<IEnumerable<OrderLineModel>> GetOrdersAccordingToQuantity(int count = 5)
+        public async Task<ApiResultModel<List<OrderLineModel>>> GetOrdersAccordingToQuantity(int count = 5)
         {
+            ApiResultModel<List<OrderLineModel>> orderLines = new ApiResultModel<List<OrderLineModel>>();
             ApiResultModel<OrderCollectionsModel> orderCollection = await GetAllOrdersByStatusType();
             if (orderCollection.ResponseData.Content.Any())
             {
-                IEnumerable<OrderLineModel> topSoldOrders = orderCollection.ResponseData.Content.SelectMany(order => order.Lines)
+                List<OrderLineModel> topSoldOrders = orderCollection.ResponseData.Content.SelectMany(order => order.Lines)
                     .GroupBy(orderLine => orderLine.MerchantProductNo)
                     .Select(orderGroup => new OrderLineModel
                     {
@@ -46,10 +47,13 @@ namespace ChannelEngine.Services
                         ProductDescription = orderGroup.First().Description,
                         Quantity = orderGroup.Sum(l => l.Quantity),
                     }).OrderByDescending(srt => srt.Quantity)
-                    .Take(count);
-                return topSoldOrders;
+                    .Take(count)
+                    .ToList();
+                orderLines.Success = true;
+                orderLines.ResponseData = topSoldOrders;
+                return orderLines;
             }
-            return new List<OrderLineModel>();
+            return orderLines;
         }
     }
 }

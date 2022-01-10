@@ -1,0 +1,63 @@
+﻿@using ChannelEngine.Models.UIModels
+@model ChannelEngine.Models.Models.ApiResultModel<List<OrderLineModel>>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Top Quantity List Page</h1>
+
+@if (Model != null && Model.Success)
+{
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Product No</th>
+                        <th>Gtin</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.ResponseData)
+                    {
+                        <tr>
+                            <td>@product.ProductDescription </td>
+                            <td>@product.Quantity </td>
+                            <td>@product.ProductNo </td>
+                            <td>@product.Gtin </td>
+                            <td>@Html.ActionLink($"Update Product Stock - {product.ProductNo}", "UpdateStock", "Product", new { productNo = product.ProductNo })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+@if (ViewBag.Response != null)
+{
+    if (ViewBag.Response.Success == true)
+    {
+        <div class="row">
+            <span>
+                <label>
+                    the product is The product stock has been updated to 25.
+                </label>
+            </span>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <span>
+                <label>
+                    An error has been occured while the product is updating.
+                </label>
+            </span>
+        </div>
+    }
+}

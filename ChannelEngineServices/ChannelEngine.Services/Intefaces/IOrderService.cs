@@ -11,6 +11,6 @@ namespace ChannelEngine.Services.Intefaces
     public interface IOrderService
     {
         Task<ApiResultModel<OrderCollectionsModel>> GetAllOrdersByStatusType(string statusType = "IN_PROGRESS");
-        Task<IEnumerable<OrderLineModel>> GetOrdersAccordingToQuantity(int count = 5);
+        Task<ApiResultModel<List<OrderLineModel>>> GetOrdersAccordingToQuantity(int count = 5);
     }
 }

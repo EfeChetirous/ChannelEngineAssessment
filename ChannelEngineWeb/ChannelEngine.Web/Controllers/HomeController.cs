@@ -1,4 +1,5 @@
-﻿using ChannelEngine.Services.Intefaces;
+﻿using ChannelEngine.Models.Models;
+using ChannelEngine.Services.Intefaces;
 using ChannelEngine.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,14 +10,18 @@ namespace ChannelEngine.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IOrderService _orderService;
-        public HomeController(ILogger<HomeController> logger, IOrderService orderService)
+        private readonly IProductService _productService;
+        public HomeController(ILogger<HomeController> logger, IOrderService orderService, IProductService productService)
         {
             _logger = logger;
             _orderService = orderService;
+            _productService = productService;
         }
 
         public async Task<IActionResult> Index()
         {
+            //List<ProductRequestModel> products = new List<ProductRequestModel>() { new ProductRequestModel() { MerchantProductNo = "001201-S", Stock = 25 } };
+            //await _productService.UpdateProductAsync(products);
             return View();
         }
 
