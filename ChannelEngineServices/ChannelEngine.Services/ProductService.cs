@@ -19,15 +19,25 @@ namespace ChannelEngine.Services
         }
 
         public async Task<ApiResultModel<ProductResponseModel>> UpdateProductAsync(List<ProductRequestModel> requestModel)
-        { 
-            ApiRequestModel<object> apiRequestModel = new ApiRequestModel<object>();
-            apiRequestModel.HttpVerb = Common.Enums.HttpVerbs.Post;
-            apiRequestModel.RequiresToken = true;
-            apiRequestModel.ActionName = "Products";
-            apiRequestModel.RequestContent = requestModel;
-            var response = await _restApiCaller.SendRequest(apiRequestModel);
-            var data = await response.ToReturnModelAsync<ProductResponseModel>();
-            return data;
+        {
+            ApiResultModel<ProductResponseModel> response = new ApiResultModel<ProductResponseModel>();
+
+            try
+            {
+                ApiRequestModel<object> apiRequestModel = new ApiRequestModel<object>();
+                apiRequestModel.HttpVerb = Common.Enums.HttpVerbs.Post;
+                apiRequestModel.RequiresToken = true;
+                apiRequestModel.ActionName = "Products";
+                apiRequestModel.RequestContent = requestModel;
+                var responseData = await _restApiCaller.SendRequest(apiRequestModel);
+                response = await responseData.ToReturnModelAsync<ProductResponseModel>();
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = "An error has been occurred.";
+            }            
+            return response;
         }
     }
 }
