@@ -14,19 +14,20 @@ namespace ChannelEngine.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly IRestApiCore<object> _fetchApi;
-        public OrderService(IRestApiCore<object> fetchApi)
+        private readonly IRestApiCore<object> _restApiCaller;
+        public OrderService(IRestApiCore<object> restApiCaller)
         {
-            _fetchApi = fetchApi;
+            _restApiCaller = restApiCaller;
         }
 
         public async Task<ApiResultModel<OrderCollectionsModel>> GetAllOrdersByStatusType(string statusType = "IN_PROGRESS")
         {
             ApiRequestModel<object> requestModel = new ApiRequestModel<object>();
             requestModel.HttpVerb = Common.Enums.HttpVerbs.Get;
-            requestModel.RequestContent = $"orders?statuses={statusType}";
+            requestModel.ActionName = "orders";
+            requestModel.RequestContent = $"statuses={statusType}";
             requestModel.RequiresToken = true;
-            var response = await _fetchApi.SendRequest(requestModel);
+            var response = await _restApiCaller.SendRequest(requestModel);
             var data = await response.ToReturnModelAsync<OrderCollectionsModel>();
             return data;
         }
@@ -40,11 +41,12 @@ namespace ChannelEngine.Services
                     .GroupBy(orderLine => orderLine.MerchantProductNo)
                     .Select(orderGroup => new OrderLineModel
                     {
-                        MerchantProductNo = orderGroup.First().MerchantProductNo,
+                        ProductNo = orderGroup.First().MerchantProductNo,
                         Gtin = orderGroup.First().Gtin,
                         ProductDescription = orderGroup.First().Description,
                         Quantity = orderGroup.Sum(l => l.Quantity),
-                    }).OrderByDescending(srt => srt.Quantity).Take(5);
+                    }).OrderByDescending(srt => srt.Quantity)
+                    .Take(count);
                 return topSoldOrders;
             }
             return new List<OrderLineModel>();

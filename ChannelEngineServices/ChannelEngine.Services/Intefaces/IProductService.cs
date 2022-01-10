@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChannelEngine.Models.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace ChannelEngine.Services.Intefaces
 {
     public interface IProductService
     {
+        Task<ApiResultModel<ProductResponseModel>> UpdateProductAsync(List<ProductRequestModel> requestModel);
     }
 }

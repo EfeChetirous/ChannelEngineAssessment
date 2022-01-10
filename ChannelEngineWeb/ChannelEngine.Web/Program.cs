@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 // Add a service to DI
 builder.Services.AddScoped<IRestApiCore<object>, RestApiCore<object>>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 

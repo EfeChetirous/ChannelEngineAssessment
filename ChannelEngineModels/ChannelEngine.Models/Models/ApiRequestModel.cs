@@ -11,6 +11,7 @@ namespace ChannelEngine.Models.Models
     {
         public HttpVerbs HttpVerb { get; set; }
         public bool RequiresToken { get; set; }
+        public string ActionName { get; set; }
         public T RequestContent { get; set; }
     }
 }

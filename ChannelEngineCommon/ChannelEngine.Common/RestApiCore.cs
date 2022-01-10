@@ -35,19 +35,20 @@ namespace ChannelEngine.Common
             {
                 try
                 {
+                    client.DefaultRequestHeaders.Add("X-CE-KEY", _apiKey);
                     switch (requestModel.HttpVerb)
                     {
                         case HttpVerbs.Post:
                             var postContent = requestModel.RequestContent.ToHttpContent();
-                            response = await client.PostAsync(_baseUrl, postContent);
+                            url += $"{requestModel.ActionName}";
+                            response = await client.PostAsync(url, postContent);
                             break;
                         case HttpVerbs.Get:
-                            url += $"{requestModel.RequestContent}";
-                            url += requestModel.RequiresToken ? $"&apiKey={_apiKey}" : "";
+                            url += $"{requestModel.ActionName}?{requestModel.RequestContent}";
                             response = await client.GetAsync(url);
                             break;
                         case HttpVerbs.Delete:
-                            response = await client.DeleteAsync(_baseUrl);
+                            response = await client.DeleteAsync(url);
                             break;
                     }
                 }
