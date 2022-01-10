@@ -10,7 +10,7 @@ namespace ChannelEngine.Models.Models
     public class ApiRequestModel<T>
     {
         public HttpVerbs HttpVerb { get; set; }
-        public bool requiresToken { get; set; }
+        public bool RequiresToken { get; set; }
         public T RequestContent { get; set; }
     }
 }

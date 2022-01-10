@@ -43,7 +43,7 @@ namespace ChannelEngine.Common
                             break;
                         case HttpVerbs.Get:
                             _baseUrl += $"{requestModel.RequestContent}";
-                            _baseUrl += requestModel.requiresToken ? $"&apiKey={_apiKey}" : "";
+                            _baseUrl += requestModel.RequiresToken ? $"&apiKey={_apiKey}" : "";
                             response = await client.GetAsync(_baseUrl);
                             break;
                         case HttpVerbs.Delete:

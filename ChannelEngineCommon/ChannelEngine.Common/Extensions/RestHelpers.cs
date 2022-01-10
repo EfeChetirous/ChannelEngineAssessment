@@ -13,7 +13,7 @@ namespace ChannelEngine.Common.Extensions
     {
         public static ApiResultModel<T> ToReturnModel<T>(this HttpResponseMessage response) where T : class
         {
-            ApiResultModel<T> returnModel;
+            ApiResultModel<T> returnModel = new ApiResultModel<T>();
             if (!response.IsSuccessStatusCode)
             {
                 returnModel = new ApiResultModel<T>
@@ -25,12 +25,17 @@ namespace ChannelEngine.Common.Extensions
 
                 return returnModel;
             }
+            else
+            {
+                returnModel.Success = true;
+                returnModel.Code = response.StatusCode.ToString();
+            }
 
             var result = response.Content.ReadAsStringAsync().Result;
 
             try
             {
-                returnModel = JsonConvert.DeserializeObject<ApiResultModel<T>>(result);
+                returnModel.ResponseData = JsonConvert.DeserializeObject<T>(result);
             }
             catch (Exception e)
             {

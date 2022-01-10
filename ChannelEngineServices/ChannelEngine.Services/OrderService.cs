@@ -24,6 +24,7 @@ namespace ChannelEngine.Services
             ApiRequestModel<string> requestModel = new ApiRequestModel<string>();
             requestModel.HttpVerb = Common.Enums.HttpVerbs.Get;
             requestModel.RequestContent = "orders?statuses=IN_PROGRESS";
+            requestModel.RequiresToken = true;
             var response = await _fetchOrdersApi.SendRequest(requestModel);
             var data = response.ToReturnModel<OrderCollectionsModel>(); 
             //JsonConvert.DeserializeObject<OrderCollectionsModel>(restResponse.Content.ReadAsStringAsync().Result);
