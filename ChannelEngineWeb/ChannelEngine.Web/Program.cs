@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 // Add a service to DI
-builder.Services.AddScoped<IRestApiCore<string>, RestApiCore<string>>();
+builder.Services.AddScoped<IRestApiCore<object>, RestApiCore<object>>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();

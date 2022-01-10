@@ -1,6 +1,7 @@
 ﻿using ChannelEngine.Common.Extensions;
 using ChannelEngine.Common.Interfaces;
 using ChannelEngine.Models.Models;
+using ChannelEngine.Models.UIModels;
 using ChannelEngine.Services.Intefaces;
 using Newtonsoft.Json;
 using System;
@@ -13,22 +14,40 @@ namespace ChannelEngine.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly IRestApiCore<string> _fetchOrdersApi;
-        public OrderService(IRestApiCore<string> fetchOrdersApi)
+        private readonly IRestApiCore<object> _fetchApi;
+        public OrderService(IRestApiCore<object> fetchApi)
         {
-            _fetchOrdersApi = fetchOrdersApi;
+            _fetchApi = fetchApi;
         }
 
-        public async Task<ApiResultModel<OrderCollectionsModel>> GetAllOrders()
+        public async Task<ApiResultModel<OrderCollectionsModel>> GetAllOrdersByStatusType(string statusType = "IN_PROGRESS")
         {
-            ApiRequestModel<string> requestModel = new ApiRequestModel<string>();
+            ApiRequestModel<object> requestModel = new ApiRequestModel<object>();
             requestModel.HttpVerb = Common.Enums.HttpVerbs.Get;
-            requestModel.RequestContent = "orders?statuses=IN_PROGRESS";
+            requestModel.RequestContent = $"orders?statuses={statusType}";
             requestModel.RequiresToken = true;
-            var response = await _fetchOrdersApi.SendRequest(requestModel);
-            var data = response.ToReturnModel<OrderCollectionsModel>(); 
-            //JsonConvert.DeserializeObject<OrderCollectionsModel>(restResponse.Content.ReadAsStringAsync().Result);
+            var response = await _fetchApi.SendRequest(requestModel);
+            var data = await response.ToReturnModelAsync<OrderCollectionsModel>();
             return data;
+        }
+
+        public async Task<IEnumerable<OrderLineModel>> GetOrdersAccordingToQuantity(int count = 5)
+        {
+            ApiResultModel<OrderCollectionsModel> orderCollection = await GetAllOrdersByStatusType();
+            if (orderCollection.ResponseData.Content.Any())
+            {
+                IEnumerable<OrderLineModel> topSoldOrders = orderCollection.ResponseData.Content.SelectMany(order => order.Lines)
+                    .GroupBy(orderLine => orderLine.MerchantProductNo)
+                    .Select(orderGroup => new OrderLineModel
+                    {
+                        MerchantProductNo = orderGroup.First().MerchantProductNo,
+                        Gtin = orderGroup.First().Gtin,
+                        ProductDescription = orderGroup.First().Description,
+                        Quantity = orderGroup.Sum(l => l.Quantity),
+                    }).OrderByDescending(srt => srt.Quantity).Take(5);
+                return topSoldOrders;
+            }
+            return new List<OrderLineModel>();
         }
     }
 }

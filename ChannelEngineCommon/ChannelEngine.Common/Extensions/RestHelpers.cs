@@ -11,7 +11,7 @@ namespace ChannelEngine.Common.Extensions
 {
     public static class RestHelpers
     {
-        public static ApiResultModel<T> ToReturnModel<T>(this HttpResponseMessage response) where T : class
+        public static async Task<ApiResultModel<T>> ToReturnModelAsync<T>(this HttpResponseMessage response) where T : class
         {
             ApiResultModel<T> returnModel = new ApiResultModel<T>();
             if (!response.IsSuccessStatusCode)
@@ -31,7 +31,7 @@ namespace ChannelEngine.Common.Extensions
                 returnModel.Code = response.StatusCode.ToString();
             }
 
-            var result = response.Content.ReadAsStringAsync().Result;
+            var result = await response.Content.ReadAsStringAsync();
 
             try
             {

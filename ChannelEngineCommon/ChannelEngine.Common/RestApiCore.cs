@@ -27,10 +27,10 @@ namespace ChannelEngine.Common
         }
 
 
-        public async Task<HttpResponseMessage> SendRequest(ApiRequestModel<T> requestModel)  
+        public async Task<HttpResponseMessage> SendRequest(ApiRequestModel<T> requestModel)
         {
             HttpResponseMessage response = null;
-
+            string url = _baseUrl;
             using (var client = new HttpClient { BaseAddress = new Uri(_baseUrl), Timeout = TimeSpan.FromSeconds(30) })
             {
                 try
@@ -42,9 +42,9 @@ namespace ChannelEngine.Common
                             response = await client.PostAsync(_baseUrl, postContent);
                             break;
                         case HttpVerbs.Get:
-                            _baseUrl += $"{requestModel.RequestContent}";
-                            _baseUrl += requestModel.RequiresToken ? $"&apiKey={_apiKey}" : "";
-                            response = await client.GetAsync(_baseUrl);
+                            url += $"{requestModel.RequestContent}";
+                            url += requestModel.RequiresToken ? $"&apiKey={_apiKey}" : "";
+                            response = await client.GetAsync(url);
                             break;
                         case HttpVerbs.Delete:
                             response = await client.DeleteAsync(_baseUrl);

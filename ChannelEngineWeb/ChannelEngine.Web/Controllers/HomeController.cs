@@ -17,7 +17,6 @@ namespace ChannelEngine.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var orders = await _orderService.GetAllOrders();
             return View();
         }
 
