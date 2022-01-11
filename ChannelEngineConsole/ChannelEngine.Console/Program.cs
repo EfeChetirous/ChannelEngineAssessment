@@ -3,8 +3,6 @@ using ChannelEngine.Common.Interfaces;
 using ChannelEngine.Services;
 using ChannelEngine.Services.Intefaces;
 using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using ChannelEngine.Models.Enums;
 using ChannelEngine.Models.Models;
@@ -60,7 +58,7 @@ namespace ChannelEngine.Console
             var result = await _productService.UpdateProductAsync(productRequestModel);
             if (result.Success)
             {
-                System.Console.WriteLine("the product stocks updated to 25");
+                System.Console.WriteLine("the product stock updated to 25");
             }
             else
             {

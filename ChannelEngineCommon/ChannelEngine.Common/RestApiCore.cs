@@ -3,14 +3,8 @@ using ChannelEngine.Common.Extensions;
 using ChannelEngine.Common.Interfaces;
 using ChannelEngine.Models.Models;
 using Microsoft.Extensions.Configuration;
-using RestSharp;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChannelEngine.Common
 {
@@ -25,7 +19,6 @@ namespace ChannelEngine.Common
             _baseUrl = _configuration["AppSettings:ChannelEngineBaseUrl"];
             _apiKey = _configuration["AppSettings:ChannelEngineApiKey"];
         }
-
 
         public async Task<HttpResponseMessage> SendRequest(ApiRequestModel<T> requestModel)
         {

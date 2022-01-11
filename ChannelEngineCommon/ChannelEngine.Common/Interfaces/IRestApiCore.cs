@@ -1,11 +1,4 @@
-﻿using ChannelEngine.Common.Enums;
-using ChannelEngine.Models.Models;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ChannelEngine.Models.Models;
 
 namespace ChannelEngine.Common.Interfaces
 {

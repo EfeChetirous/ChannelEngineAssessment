@@ -1,11 +1,7 @@
 using Xunit;
 using Moq;
-using System.Collections.Generic;
-using ChannelEngine.Models.UIModels;
 using ChannelEngine.Services;
 using ChannelEngine.Common.Interfaces;
-using ChannelEngine.Models.Models;
-using System.Threading.Tasks;
 using ChannelEngine.Services.Intefaces;
 
 namespace ChannelEngine.Tests

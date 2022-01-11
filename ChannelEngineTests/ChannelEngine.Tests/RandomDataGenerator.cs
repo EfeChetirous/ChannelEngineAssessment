@@ -1,11 +1,5 @@
-﻿using ChannelEngine.Common.Enums;
-using ChannelEngine.Models.Models;
-using ChannelEngine.Models.UIModels;
-using System;
+﻿using ChannelEngine.Models.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChannelEngine.Tests
 {
@@ -86,74 +80,6 @@ namespace ChannelEngine.Tests
             {
                 Code = "OK",
                 ResponseData = orderCollection,
-                Success = true
-            };
-            return response;
-        }
-
-        public static ApiResultModel<List<OrderLineModel>> GenerateOrderLineData()
-        {
-
-            var productFirst = new OrderLineModel
-            {
-                ProductDescription = "test 1",
-                Quantity = 12,
-                ProductNo = "001201-S",
-                Gtin = "8719351029609",
-            };
-
-            var productSecond = new OrderLineModel
-            {
-                ProductDescription = "test 1",
-                Quantity = 12,
-                ProductNo = "001201-S",
-                Gtin = "8719351029609",
-            };
-
-            var productThird = new OrderLineModel
-            {
-                ProductDescription = "test 1",
-                Quantity = 12,
-                ProductNo = "001201-S",
-                Gtin = "8719351029609",
-            };
-
-            var productFourth = new OrderLineModel
-            {
-                ProductDescription = "test 1",
-                Quantity = 12,
-                ProductNo = "001201-S",
-                Gtin = "8719351029609",
-            };
-
-            var productFifth = new OrderLineModel
-            {
-                ProductDescription = "test 1",
-                Quantity = 12,
-                ProductNo = "001201-S",
-                Gtin = "8719351029609",
-            };
-
-            var productSixth = new OrderLineModel
-            {
-                ProductDescription = "test 1",
-                Quantity = 12,
-                ProductNo = "001201-S",
-                Gtin = "8719351029609",
-            };
-
-            var lines = new List<OrderLineModel>();
-            lines.Add(productFirst);
-            lines.Add(productSecond);
-            lines.Add(productThird);
-            lines.Add(productFourth);
-            lines.Add(productFifth);
-            lines.Add(productSixth);
-
-            var response = new ApiResultModel<List<OrderLineModel>>
-            {
-                Code = "OK",
-                ResponseData = lines,
                 Success = true
             };
             return response;
