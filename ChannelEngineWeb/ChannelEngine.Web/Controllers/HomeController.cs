@@ -20,8 +20,6 @@ namespace ChannelEngine.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //List<ProductRequestModel> products = new List<ProductRequestModel>() { new ProductRequestModel() { MerchantProductNo = "001201-S", Stock = 25 } };
-            //await _productService.UpdateProductAsync(products);
             return View();
         }
 
