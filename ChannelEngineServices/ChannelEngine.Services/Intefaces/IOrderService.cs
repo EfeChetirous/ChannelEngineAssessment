@@ -10,7 +10,8 @@ namespace ChannelEngine.Services.Intefaces
 {
     public interface IOrderService
     {
-        Task<ApiResultModel<OrderCollectionsModel>> GetAllOrdersByStatusType(string statusType = "IN_PROGRESS");
-        Task<ApiResultModel<List<OrderLineModel>>> GetOrdersAccordingToQuantity(int count = 5);
+        public Task<ApiResultModel<OrderCollectionsModel>> GetAllOrdersByStatusType(string statusType = "IN_PROGRESS");
+        public Task<ApiResultModel<List<OrderLineModel>>> GetOrdersAccordingToQuantity(int count = 5);
+        ApiResultModel<List<OrderLineModel>> FetchOrderData(ApiResultModel<OrderCollectionsModel> orderCollection, int count = 5);
     }
 }

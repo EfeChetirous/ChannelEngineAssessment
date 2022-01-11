@@ -43,10 +43,15 @@ namespace ChannelEngine.Services
 
         public async Task<ApiResultModel<List<OrderLineModel>>> GetOrdersAccordingToQuantity(int count = 5)
         {
+            ApiResultModel<OrderCollectionsModel> orderCollection = await GetAllOrdersByStatusType();
+            return FetchOrderData(orderCollection, count);
+        }
+        
+        public ApiResultModel<List<OrderLineModel>> FetchOrderData(ApiResultModel<OrderCollectionsModel> orderCollection, int count = 5)
+        {
             ApiResultModel<List<OrderLineModel>> orderLines = new ApiResultModel<List<OrderLineModel>>();
             try
             {
-                ApiResultModel<OrderCollectionsModel> orderCollection = await GetAllOrdersByStatusType();
                 if (orderCollection.ResponseData.Content.Any())
                 {
                     List<OrderLineModel> topSoldOrders = orderCollection.ResponseData.Content.SelectMany(order => order.Lines)
@@ -62,13 +67,12 @@ namespace ChannelEngine.Services
                         .ToList();
                     orderLines.Success = true;
                     orderLines.ResponseData = topSoldOrders;
-                    return orderLines;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 orderLines.Success = false;
-                orderLines.Message = ex.Message;
+                orderLines.Message = "An error has been occured.";
             }
             return orderLines;
         }
